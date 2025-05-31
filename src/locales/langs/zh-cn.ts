@@ -165,7 +165,12 @@ const local: App.I18n.Schema = {
     404: '页面不存在',
     500: '服务器错误',
     'iframe-page': '外链页面',
-    home: '首页'
+    home: '首页',
+    manage: '管理',
+    manage_log: '日志管理', 
+    manage_user: '用户管理',
+    manage_role: '角色管理',
+    manage_menu: '菜单管理',
   },
   page: {
     login: {
@@ -242,8 +247,267 @@ const local: App.I18n.Schema = {
         desc5: 'Soybean 刚才把工作台页面随便写了一些，凑合能看了！'
       },
       creativity: '创意'
+    },
+
+    function: {
+      tab: {
+        tabOperate: {
+          title: '标签页操作',
+          addTab: '添加标签页',
+          addTabDesc: '跳转到关于页面',
+          closeTab: '关闭标签页',
+          closeCurrentTab: '关闭当前标签页',
+          closeAboutTab: '关闭"关于"标签页',
+          addMultiTab: '添加多标签页',
+          addMultiTabDesc1: '跳转到多标签页页面',
+          addMultiTabDesc2: '跳转到多标签页页面(带有查询参数)'
+        },
+        tabTitle: {
+          title: '标签页标题',
+          changeTitle: '修改标题',
+          change: '修改',
+          resetTitle: '重置标题',
+          reset: '重置'
+        }
+      },
+      multiTab: {
+        routeParam: '路由参数',
+        backTab: '返回 function_tab'
+      },
+      toggleAuth: {
+        toggleAccount: '切换账号',
+        authHook: '权限钩子函数 `hasAuth`',
+        superAdminVisible: '超级管理员可见',
+        adminVisible: '管理员可见',
+        adminOrUserVisible: '管理员和用户可见'
+      },
+      request: {
+        repeatedErrorOccurOnce: '重复请求错误只出现一次',
+        repeatedError: '重复请求错误',
+        repeatedErrorMsg1: '自定义请求错误 1',
+        repeatedErrorMsg2: '自定义请求错误 2'
+      }
+    },
+    manage: {
+      common: {
+        status: {
+          enable: '启用',
+          disable: '禁用'
+        }
+      },
+      role: {
+        title: '角色列表',
+        roleName: '角色名称',
+        roleCode: '角色编码',
+        roleStatus: '角色状态',
+        roleDesc: '角色描述',
+        menuAuth: '菜单权限',
+        buttonAuth: '按钮权限',
+        apiAuth: 'API权限',
+        form: {
+          roleName: '请输入角色名称',
+          roleCode: '请输入角色编码',
+          roleStatus: '请选择角色状态',
+          roleDesc: '请选择用户角色'
+        },
+        addRole: '新增角色',
+        editRole: '编辑角色'
+      },
+      log: {
+        title: '日志列表',
+        logType: '日志类型',
+        logUser: '操作人员',
+        logDetailType: '日志详细',
+        requestUrl: '请求URL',
+        createTime: '创建时间',
+        responseCode: '响应业务码',
+        form: {
+          logType: '请选择日志类型',
+          logUser: '请输入操作人员',
+          logDetailType: '请选择日志详细',
+          requestUrl: '请输入请求URL',
+          createTime: '请选择创建时间',
+          responseCode: '请输入响应业务码'
+        },
+        viewLog: '查看日志',
+        logDetailTypes: {
+          SystemStart: '系统启动',
+          SystemStop: '系统关闭',
+          UserLoginSuccess: '用户登录成功',
+          UserAuthRefreshTokenSuccess: '用户认证刷新令牌成功',
+          UserLoginGetUserInfo: '用户登录获取用户信息',
+          UserLoginUserNameVaild: '用户登录用户名有效',
+          UserLoginErrorPassword: '用户登录密码错误',
+          UserLoginForbid: '用户登录禁止',
+          ApiGetList: '获取接口列表',
+          ApiGetTree: '获取接口树',
+          ApiRefresh: '刷新接口',
+          ApiGetOne: '获取单个接口',
+          ApiCreateOne: '创建单个接口',
+          ApiUpdateOne: '更新单个接口',
+          ApiDeleteOne: '删除单个接口',
+          ApiBatchDelete: '批量删除接口',
+          MenuGetList: '获取菜单列表',
+          MenuGetTree: '获取菜单树',
+          MenuGetPages: '获取菜单页面',
+          MenuGetButtonsTree: '获取菜单按钮树',
+          MenuGetOne: '获取单个菜单',
+          MenuCreateOne: '创建单个菜单',
+          MenuUpdateOne: '更新单个菜单',
+          MenuDeleteOne: '删除单个菜单',
+          MenuBatchDeleteOne: '批量删除菜单',
+          RoleGetList: '获取角色列表',
+          RoleGetMenus: '获取角色菜单',
+          RoleUpdateMenus: '更新角色菜单',
+          RoleGetButtons: '获取角色按钮',
+          RoleUpdateButtons: '更新角色按钮',
+          RoleGetApis: '获取角色接口',
+          RoleUpdateApis: '更新角色接口',
+          RoleGetOne: '获取单个角色',
+          RoleCreateOne: '创建单个角色',
+          RoleUpdateOne: '更新单个角色',
+          RoleDeleteOne: '删除单个角色',
+          RoleBatchDeleteOne: '批量删除角色',
+          UserGetList: '获取用户列表',
+          UserGetOne: '获取单个用户',
+          UserCreateOne: '创建单个用户',
+          UserUpdateOne: '更新单个用户',
+          UserDeleteOne: '删除单个用户',
+          UserBatchDeleteOne: '批量删除用户'
+        },
+        logTypes: {
+          ApiLog: 'API日志',
+          UserLog: '用户日志',
+          AdminLog: '管理日志',
+          SystemLog: '系统日志'
+        }
+      },
+      api: {
+        title: 'API列表',
+        path: 'API路径',
+        method: '请求方式',
+        summary: 'API简介',
+        tags: 'Tags',
+        status: 'API状态',
+        form: {
+          path: '请输入API路径',
+          method: '请选择请求方式',
+          summary: '请输入API简介',
+          tags: '请输入Tags',
+          status: '请选择API状态'
+        },
+        addApi: '新增API',
+        editApi: '编辑API',
+        methods: {
+          GET: 'GET',
+          POST: 'POST',
+          PUT: 'PUT',
+          PATCH: 'PATCH',
+          DELETE: 'DELETE'
+        }
+      },
+      user: {
+        title: '用户列表',
+        userName: '用户名',
+        password: '密码',
+        userGender: '性别',
+        nickName: '昵称',
+        userPhone: '手机号',
+        userEmail: '邮箱',
+        userStatus: '用户状态',
+        userRole: '用户角色',
+        form: {
+          userName: '请输入用户名',
+          password: '请输入密码',
+          userGender: '请选择性别',
+          nickName: '请输入昵称',
+          userPhone: '请输入手机号',
+          userEmail: '请输入邮箱',
+          userStatus: '请选择用户状态',
+          userRole: '请选择用户角色'
+        },
+        addUser: '新增用户',
+        editUser: '编辑用户',
+        gender: {
+          male: '男',
+          female: '女',
+          unknow: '未知'
+        }
+      },
+      menu: {
+        home: '首页',
+        title: '菜单列表',
+        id: 'ID',
+        parentId: '父级菜单ID',
+        menuType: '菜单类型',
+        menuName: '菜单名称',
+        routeName: '路由名称',
+        routePath: '路由路径',
+        pathParam: '路径参数',
+        layout: '布局',
+        page: '页面组件',
+        i18nKey: '国际化key',
+        icon: '图标',
+        localIcon: '本地图标',
+        iconTypeTitle: '图标类型',
+        order: '排序',
+        constant: '常量路由',
+        keepAlive: '缓存路由',
+        href: '外链',
+        hideInMenu: '隐藏菜单',
+        activeMenu: '高亮的菜单',
+        multiTab: '支持多页签',
+        fixedIndexInTab: '固定在页签中的序号',
+        query: '路由参数',
+        button: '按钮',
+        buttonCode: '按钮编码',
+        buttonDesc: '按钮描述',
+        menuStatus: '菜单状态',
+        form: {
+          home: '请选择首页',
+          menuType: '请选择菜单类型',
+          menuName: '请输入菜单名称',
+          routeName: '请输入路由名称',
+          routePath: '请输入路由路径',
+          pathParam: '请输入路径参数',
+          page: '请选择页面组件',
+          layout: '请选择布局组件',
+          i18nKey: '请输入国际化key',
+          icon: '请输入图标',
+          localIcon: '请选择本地图标',
+          order: '请输入排序',
+          keepAlive: '请选择是否缓存路由',
+          href: '请输入外链',
+          hideInMenu: '请选择是否隐藏菜单',
+          activeMenu: '请选择高亮的菜单的路由名称',
+          multiTab: '请选择是否支持多标签',
+          fixedInTab: '请选择是否固定在页签中',
+          fixedIndexInTab: '请输入固定在页签中的序号',
+          queryKey: '请输入路由参数Key',
+          queryValue: '请输入路由参数Value',
+          button: '请选择是否按钮',
+          buttonCode: '请输入按钮编码',
+          buttonDesc: '请输入按钮描述',
+          menuStatus: '请选择菜单状态'
+        },
+        addMenu: '新增菜单',
+        editMenu: '编辑菜单',
+        addChildMenu: '新增子菜单',
+        type: {
+          directory: '目录',
+          menu: '菜单'
+        },
+        iconType: {
+          iconify: 'iconify图标',
+          local: '本地图标'
+        }
+      }
     }
+
+
   },
+   
+  
   form: {
     required: '不能为空',
     userName: {
