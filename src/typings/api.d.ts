@@ -86,6 +86,46 @@ declare namespace Api {
   }
 
 
+  namespace ArticleManage {
+    /** 单个文章记录 */
+    type Article = Common.CommonRecord<{
+      title: string;
+      description: string;
+      body: string;
+      authorName: string;
+    }>;
+
+    /** 搜索参数 */
+    type ArticleSearchParams = {
+      title?: string;
+      description?: string;
+      body?: string;
+      author_name?: string;
+      time_range?: string;
+      current?: number;
+      size?: number;
+    };
+
+    /** 列表返回 */
+    type ArticleList = Common.PaginatingQueryRecord<Article>;
+
+    /** 更新文章参数 */
+    type ArticleUpdateParams = {
+      id: number;
+      title?: string;
+      description?: string;
+      body?: string;
+    };
+
+    /** 删除文章参数 */
+    type CommonDeleteParams = { id: number };
+
+    /** 批量删除文章参数 */
+    type CommonBatchDeleteParams = { ids: string[] };
+  }
+}
+
+
   /**
    * namespace SystemManage
    *
@@ -451,10 +491,6 @@ declare namespace Api {
       children?: ButtonTree[];
     };
   }
-
-
-
-
 
 
 

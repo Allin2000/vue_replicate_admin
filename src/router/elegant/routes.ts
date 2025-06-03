@@ -40,6 +40,15 @@ export const generatedRoutes: GeneratedRoute[] = [
     }
   },
   {
+    name: 'article',
+    path: '/article',
+    component: 'layout.base$view.article',
+    meta: {
+      title: 'article',
+      i18nKey: 'route.article'
+    }
+  },
+  {
     name: 'home',
     path: '/home',
     component: 'layout.base$view.home',
