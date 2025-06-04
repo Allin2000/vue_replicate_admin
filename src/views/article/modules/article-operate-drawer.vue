@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { NInput, NForm, NFormItem, NDrawer, NDrawerContent } from 'naive-ui';
-import { useNaiveForm } from '@/hooks/common/form';
+import { NDrawer, NDrawerContent, NForm, NFormItem, NInput } from 'naive-ui';
 import { fetchArticleById, fetchUpdateArticle } from '@/service/api';
+import { useNaiveForm } from '@/hooks/common/form';
 
 interface Props {
   visible: boolean;
-  operateType: 'view' | 'edit';
+  operateType: 'view' | 'edit' | 'add';
   rowData: Api.ArticleManage.Article | null;
 }
 
@@ -22,7 +22,7 @@ const model = ref<Partial<Api.ArticleManage.ArticleUpdateParams>>({});
 
 watch(
   () => props.visible,
-  async (val) => {
+  async val => {
     if (val && props.rowData?.id) {
       const res = await fetchArticleById(props.rowData.id);
       model.value = res.data || {};
@@ -62,9 +62,7 @@ async function handleSubmit() {
       </NForm>
 
       <template #footer>
-        <NButton v-if="props.operateType === 'edit'" type="primary" @click="handleSubmit">
-          保存
-        </NButton>
+        <NButton v-if="props.operateType === 'edit'" type="primary" @click="handleSubmit">保存</NButton>
         <NButton @click="emit('update:visible', false)">关闭</NButton>
       </template>
     </NDrawerContent>

@@ -92,6 +92,8 @@ declare namespace Api {
       description: string;
       body: string;
       authorName: string;
+      createdAt: string;
+      updatedAt: string;
     }>;
 
     /** 搜索参数 */
