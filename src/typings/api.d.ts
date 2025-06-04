@@ -85,7 +85,6 @@ declare namespace Api {
     }
   }
 
-
   namespace ArticleManage {
     /** 单个文章记录 */
     type Article = Common.CommonRecord<{
@@ -123,8 +122,6 @@ declare namespace Api {
     /** 批量删除文章参数 */
     type CommonBatchDeleteParams = { ids: string[] };
   }
-}
-
 
   /**
    * namespace SystemManage
@@ -491,9 +488,4 @@ declare namespace Api {
       children?: ButtonTree[];
     };
   }
-
-
-
-
-
 }
