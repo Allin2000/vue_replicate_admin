@@ -1,11 +1,11 @@
 <script setup lang="tsx">
 import { NButton, NTag } from 'naive-ui';
-import { fetchBatchDeleteLog, fetchGetLogList } from '@/service/api';
-import { $t } from '@/locales';
-import { useAppStore } from '@/store/modules/app';
 import { logDetailTypeRecord, logTypeRecord } from '@/constants/business';
+import { fetchBatchDeleteLog, fetchGetLogList } from '@/service/api';
+import { useAppStore } from '@/store/modules/app';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import { useAuth } from '@/hooks/business/auth';
+import { $t } from '@/locales';
 import LogOperateDrawer from './modules/log-operate-drawer.vue';
 import LogSearch from './modules/log-search.vue';
 
@@ -55,9 +55,9 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
       title: $t('page.manage.log.logDetailType'),
       align: 'center',
       minWidth: 50,
-      render: row => {
+      render: (row: Api.SystemManage.Log) => {
         if (row.logDetailType) {
-          const label = $t(logDetailTypeRecord[row.logDetailType]);
+          const label = $t(logDetailTypeRecord[row.logDetailType as Api.SystemManage.logDetailTypes]);
           return <NTag type="default">{label}</NTag>;
         }
         return null;
@@ -68,7 +68,7 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
       title: $t('page.manage.log.logType'),
       align: 'center',
       width: 100,
-      render: row => {
+      render: (row: Api.SystemManage.Log) => {
         const tagMap: Record<Api.SystemManage.logTypes, NaiveUI.ThemeColor> = {
           1: 'default',
           2: 'error',
@@ -76,9 +76,9 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
           4: 'info'
         };
 
-        const label = $t(logTypeRecord[row.logType]);
+        const label = $t(logTypeRecord[row.logType as Api.SystemManage.logTypes]);
 
-        return <NTag type={tagMap[row.logType]}>{label}</NTag>;
+        return <NTag type={tagMap[row.logType as Api.SystemManage.logTypes]}>{label}</NTag>;
       }
     },
     {
@@ -98,32 +98,15 @@ const { columns, columnChecks, data, getData, loading, mobilePagination, searchP
       title: $t('common.operate'),
       align: 'center',
       width: 130,
-      render: row => (
+      render: (row: Api.SystemManage.Log) => (
         <div class="flex-center gap-8px">
           <NButton type="primary" ghost size="small" onClick={() => edit(row.id)}>
-            {$t('common.view')}
+            查看
           </NButton>
         </div>
       )
     }
-  ],
-  transformer: res => {
-    const { records = [], current = 1, size = 10, total = 0 } = res.data || {};
-
-    const recordsWithIndex = records.map((item, index) => {
-      return {
-        ...item,
-        index: total - (current - 1) * size + index // 倒序展示index
-      };
-    });
-
-    return {
-      data: recordsWithIndex,
-      pageNum: current,
-      pageSize: size,
-      total
-    };
-  }
+  ]
 });
 
 const {
@@ -135,6 +118,7 @@ const {
   handleEdit
   // closeDrawer
 } = useTableOperate(data, getData);
+
 const { hasAuth } = useAuth();
 
 async function handleadd() {
@@ -180,7 +164,7 @@ function edit(id: number) {
         :scroll-x="962"
         :loading="loading"
         remote
-        :row-key="row => row.id"
+        :row-key="(row: Api.SystemManage.Log) => row.id"
         :pagination="mobilePagination"
         class="sm:h-full"
       />

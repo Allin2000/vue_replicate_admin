@@ -1,7 +1,7 @@
 <script setup lang="tsx">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { NButton, NCard, NDataTable } from 'naive-ui';
-import type { PaginationProps } from 'naive-ui'; // 导入 PaginationProps 类型
+import type { PaginationProps } from 'naive-ui';
 import { fetchArticleList, fetchBatchDeleteArticle, fetchDeleteArticle } from '@/service/api/article';
 import { useTable, useTableOperate } from '@/hooks/common/table';
 import ArticleSearch from './modules/article-search.vue';
@@ -19,16 +19,17 @@ const {
   columns,
   data,
   loading,
-  mobilePagination, // 使用 mobilePagination
+  mobilePagination,
   getData,
+  updateSearchParams,
   resetSearchParams: resetTableSearchParams
 } = useTable({
   apiFn: fetchArticleList,
   apiParams: {
     current: 1,
-    size: 10
+    size: 10,
+    ...searchParams.value
   },
-  // 移除 transformParams，因为 useTable 内部已经处理了 searchParams 的更新
   columns: () => [
     {
       type: 'selection',
@@ -40,10 +41,9 @@ const {
       title: '序号',
       align: 'center',
       width: 64,
-      render(row, index) {
-        // 使用 mobilePagination.value 访问当前页码和每页大小
-        const pageSize = mobilePagination.value?.pageSize || 10;
-        const page = mobilePagination.value?.page || 1;
+      render(row: Api.ArticleManage.Article, index: number): number {
+        const pageSize: number = mobilePagination.value?.pageSize || 10;
+        const page: number = mobilePagination.value?.page || 1;
         return pageSize * (page - 1) + index + 1;
       }
     },
@@ -78,21 +78,18 @@ const {
       title: '操作',
       align: 'center',
       width: 130,
-      render(row) {
+      render(row: Api.ArticleManage.Article) {
         return (
           <div class="flex-center gap-8px">
             <NButton size="small" type="primary" ghost onClick={() => handleView(row)}>
               查看
             </NButton>
-            {/* 你可能需要调整 hasAuth 的具体实现或引入方式 */}
-            {/* 例如：从 useAuth() 获取 hasAuth */}
-            {/* const { hasAuth } = useAuth(); */}
-            {true && ( // 暂时用 true 代替 hasAuth('article:edit')，请根据你的业务逻辑恢复
+            {true && (
               <NButton size="small" type="success" ghost onClick={() => operateHooks.handleEdit(row.id)}>
                 编辑
               </NButton>
             )}
-            {true && ( // 暂时用 true 代替 hasAuth('article:delete')，请根据你的业务逻辑恢复
+            {true && (
               <NButton size="small" type="error" ghost onClick={() => handleDeleteWrapper(row.id)}>
                 删除
               </NButton>
@@ -104,8 +101,8 @@ const {
   ]
 });
 
-// 将 mobilePagination 赋值给 pagination，并明确其类型
-const pagination: PaginationProps = mobilePagination.value;
+// 明确类型化的 pagination
+const pagination = computed<PaginationProps>(() => mobilePagination.value);
 
 // 从 useTableOperate 解构其返回的属性
 const operateHooks = useTableOperate<Api.ArticleManage.Article>(data, getData);
@@ -113,12 +110,11 @@ const operateHooks = useTableOperate<Api.ArticleManage.Article>(data, getData);
 // 将 useTableOperate 中的 checkedRowKeys 映射到组件中
 const selectedRowKeys = operateHooks.checkedRowKeys;
 
-// 处理单个删除的包装函数，因为 useTableOperate 的 handleEdit/handleDelete 期望 id
-// 而 useTableOperate 的 onDeleted hook 需要在删除API成功后被调用
+// 处理单个删除的包装函数
 async function handleDeleteWrapper(id: Api.ArticleManage.Article['id']) {
-  const { error } = await fetchDeleteArticle({ id }); // 调用你的删除API
+  const { error } = await fetchDeleteArticle({ id });
   if (!error) {
-    operateHooks.onDeleted(); // 调用 useTableOperate 的 hook 处理删除成功后的逻辑
+    operateHooks.onDeleted();
   }
 }
 
@@ -132,24 +128,22 @@ function onReset() {
     author_name: '',
     time_range: ''
   };
-  // 保持与 useTable 的 searchParams 同步，并触发 getData
+  // 重置表格的搜索参数并重新获取数据
   resetTableSearchParams();
 }
 
 function onSearch() {
-  // 当搜索参数变化时，更新 useTable 内部的 searchParams，并重新获取数据
-  useTable({
-    apiFn: fetchArticleList,
-    apiParams: {
-      current: 1,
-      size: 10,
-      ...searchParams.value // 确保将最新的搜索参数传递给 useTable
-    }
-  }).getData();
+  // 更新搜索参数并重新获取数据
+  updateSearchParams({
+    current: 1,
+    size: pagination.value.pageSize || 10,
+    ...searchParams.value
+  });
+  getData();
 }
 
 function handleView(row: Api.ArticleManage.Article) {
-  operateHooks.operateType.value = 'view' as NaiveUI.TableOperateType; // 明确断言为 NaiveUI.TableOperateType
+  operateHooks.operateType.value = 'view' as NaiveUI.TableOperateType;
   operateHooks.editingData.value = row;
   operateHooks.openDrawer();
 }
@@ -158,7 +152,7 @@ async function handleBatchDelete() {
   if (selectedRowKeys.value.length === 0) return;
   const { error } = await fetchBatchDeleteArticle({ ids: selectedRowKeys.value });
   if (!error) {
-    operateHooks.onBatchDeleted(); // 调用 useTableOperate 的 hook 处理批量删除成功后的逻辑
+    operateHooks.onBatchDeleted();
   }
 }
 </script>
