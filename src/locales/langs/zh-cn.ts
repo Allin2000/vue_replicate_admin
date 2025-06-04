@@ -167,6 +167,7 @@ const local: App.I18n.Schema = {
     'iframe-page': '外链页面',
     home: '首页',
     manage: '管理',
+    article: '文章管理',
     manage_log: '日志管理',
     manage_user: '用户管理',
     manage_role: '角色管理',
@@ -219,6 +220,19 @@ const local: App.I18n.Schema = {
         title: '绑定微信'
       }
     },
+    article: {
+      title: '关于',
+      introduction: `SoybeanAdmin 是一个优雅且功能强大的后台管理模板`,
+      projectInfo: {
+        title: '项目信息',
+        version: '版本',
+        latestBuildTime: '最新构建时间',
+        githubLink: 'Github 地址',
+        previewLink: '预览地址'
+      },
+      prdDep: '生产依赖',
+      devDep: '开发依赖'
+    },
     home: {
       branchDesc: '尚未准备好投入生产',
       greeting: '早安，{userName}, 今天又是充满活力的一天!',
@@ -248,45 +262,45 @@ const local: App.I18n.Schema = {
       creativity: '创意'
     },
 
-    function: {
-      tab: {
-        tabOperate: {
-          title: '标签页操作',
-          addTab: '添加标签页',
-          addTabDesc: '跳转到关于页面',
-          closeTab: '关闭标签页',
-          closeCurrentTab: '关闭当前标签页',
-          closeAboutTab: '关闭"关于"标签页',
-          addMultiTab: '添加多标签页',
-          addMultiTabDesc1: '跳转到多标签页页面',
-          addMultiTabDesc2: '跳转到多标签页页面(带有查询参数)'
-        },
-        tabTitle: {
-          title: '标签页标题',
-          changeTitle: '修改标题',
-          change: '修改',
-          resetTitle: '重置标题',
-          reset: '重置'
-        }
-      },
-      multiTab: {
-        routeParam: '路由参数',
-        backTab: '返回 function_tab'
-      },
-      toggleAuth: {
-        toggleAccount: '切换账号',
-        authHook: '权限钩子函数 `hasAuth`',
-        superAdminVisible: '超级管理员可见',
-        adminVisible: '管理员可见',
-        adminOrUserVisible: '管理员和用户可见'
-      },
-      request: {
-        repeatedErrorOccurOnce: '重复请求错误只出现一次',
-        repeatedError: '重复请求错误',
-        repeatedErrorMsg1: '自定义请求错误 1',
-        repeatedErrorMsg2: '自定义请求错误 2'
-      }
-    },
+    // function: {
+    //   tab: {
+    //     tabOperate: {
+    //       title: '标签页操作',
+    //       addTab: '添加标签页',
+    //       addTabDesc: '跳转到关于页面',
+    //       closeTab: '关闭标签页',
+    //       closeCurrentTab: '关闭当前标签页',
+    //       closeAboutTab: '关闭"关于"标签页',
+    //       addMultiTab: '添加多标签页',
+    //       addMultiTabDesc1: '跳转到多标签页页面',
+    //       addMultiTabDesc2: '跳转到多标签页页面(带有查询参数)'
+    //     },
+    //     tabTitle: {
+    //       title: '标签页标题',
+    //       changeTitle: '修改标题',
+    //       change: '修改',
+    //       resetTitle: '重置标题',
+    //       reset: '重置'
+    //     }
+    //   },
+    //   multiTab: {
+    //     routeParam: '路由参数',
+    //     backTab: '返回 function_tab'
+    //   },
+    //   toggleAuth: {
+    //     toggleAccount: '切换账号',
+    //     authHook: '权限钩子函数 `hasAuth`',
+    //     superAdminVisible: '超级管理员可见',
+    //     adminVisible: '管理员可见',
+    //     adminOrUserVisible: '管理员和用户可见'
+    //   },
+    //   request: {
+    //     repeatedErrorOccurOnce: '重复请求错误只出现一次',
+    //     repeatedError: '重复请求错误',
+    //     repeatedErrorMsg1: '自定义请求错误 1',
+    //     repeatedErrorMsg2: '自定义请求错误 2'
+    //   }
+    // },
     manage: {
       common: {
         status: {
@@ -379,30 +393,6 @@ const local: App.I18n.Schema = {
           UserLog: '用户日志',
           AdminLog: '管理日志',
           SystemLog: '系统日志'
-        }
-      },
-      api: {
-        title: 'API列表',
-        path: 'API路径',
-        method: '请求方式',
-        summary: 'API简介',
-        tags: 'Tags',
-        status: 'API状态',
-        form: {
-          path: '请输入API路径',
-          method: '请选择请求方式',
-          summary: '请输入API简介',
-          tags: '请输入Tags',
-          status: '请选择API状态'
-        },
-        addApi: '新增API',
-        editApi: '编辑API',
-        methods: {
-          GET: 'GET',
-          POST: 'POST',
-          PUT: 'PUT',
-          PATCH: 'PATCH',
-          DELETE: 'DELETE'
         }
       },
       user: {

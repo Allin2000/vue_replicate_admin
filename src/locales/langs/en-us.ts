@@ -166,11 +166,12 @@ const local: App.I18n.Schema = {
     500: 'Server Error',
     'iframe-page': 'Iframe',
     home: 'Home',
+    article: 'article',
     manage: 'Manage',
-    manage_log: 'Log Management', 
+    manage_log: 'Log Management',
     manage_user: 'User Manage',
     manage_role: 'Role Manage',
-    manage_menu: 'Menu Manage',
+    manage_menu: 'Menu Manage'
   },
   page: {
     login: {
@@ -219,6 +220,19 @@ const local: App.I18n.Schema = {
         title: 'Bind WeChat'
       }
     },
+    article: {
+      title: '关于',
+      introduction: `SoybeanAdmin 是一个优雅且功能强大的后台管理模板`,
+      projectInfo: {
+        title: '项目信息',
+        version: '版本',
+        latestBuildTime: '最新构建时间',
+        githubLink: 'Github 地址',
+        previewLink: '预览地址'
+      },
+      prdDep: '生产依赖',
+      devDep: '开发依赖'
+    },
     home: {
       branchDesc:
         'For the convenience of everyone in developing and updating the merge, we have streamlined the code of the main branch, only retaining the homepage menu, and the rest of the content has been moved to the example branch for maintenance. The preview address displays the content of the example branch.',
@@ -249,45 +263,45 @@ const local: App.I18n.Schema = {
       creativity: 'Creativity'
     },
 
-      function: {
-      tab: {
-        tabOperate: {
-          title: 'Tab Operation',
-          addTab: 'Add Tab',
-          addTabDesc: 'To about page',
-          closeTab: 'Close Tab',
-          closeCurrentTab: 'Close Current Tab',
-          closeAboutTab: 'Close "About" Tab',
-          addMultiTab: 'Add Multi Tab',
-          addMultiTabDesc1: 'To MultiTab page',
-          addMultiTabDesc2: 'To MultiTab page(with query params)'
-        },
-        tabTitle: {
-          title: 'Tab Title',
-          changeTitle: 'Change Title',
-          change: 'Change',
-          resetTitle: 'Reset Title',
-          reset: 'Reset'
-        }
-      },
-      multiTab: {
-        routeParam: 'Route Param',
-        backTab: 'Back function_tab'
-      },
-      toggleAuth: {
-        toggleAccount: 'Toggle Account',
-        authHook: 'Auth Hook Function `hasAuth`',
-        superAdminVisible: 'Super Admin Visible',
-        adminVisible: 'Admin Visible',
-        adminOrUserVisible: 'Admin and User Visible'
-      },
-      request: {
-        repeatedErrorOccurOnce: 'Repeated Request Error Occurs Once',
-        repeatedError: 'Repeated Request Error',
-        repeatedErrorMsg1: 'Custom Request Error 1',
-        repeatedErrorMsg2: 'Custom Request Error 2'
-      }
-    },
+    // function: {
+    //   tab: {
+    //     tabOperate: {
+    //       title: 'Tab Operation',
+    //       addTab: 'Add Tab',
+    //       addTabDesc: 'To about page',
+    //       closeTab: 'Close Tab',
+    //       closeCurrentTab: 'Close Current Tab',
+    //       closeAboutTab: 'Close "About" Tab',
+    //       addMultiTab: 'Add Multi Tab',
+    //       addMultiTabDesc1: 'To MultiTab page',
+    //       addMultiTabDesc2: 'To MultiTab page(with query params)'
+    //     },
+    //     tabTitle: {
+    //       title: 'Tab Title',
+    //       changeTitle: 'Change Title',
+    //       change: 'Change',
+    //       resetTitle: 'Reset Title',
+    //       reset: 'Reset'
+    //     }
+    //   },
+    //   multiTab: {
+    //     routeParam: 'Route Param',
+    //     backTab: 'Back function_tab'
+    //   },
+    //   toggleAuth: {
+    //     toggleAccount: 'Toggle Account',
+    //     authHook: 'Auth Hook Function `hasAuth`',
+    //     superAdminVisible: 'Super Admin Visible',
+    //     adminVisible: 'Admin Visible',
+    //     adminOrUserVisible: 'Admin and User Visible'
+    //   },
+    //   request: {
+    //     repeatedErrorOccurOnce: 'Repeated Request Error Occurs Once',
+    //     repeatedError: 'Repeated Request Error',
+    //     repeatedErrorMsg1: 'Custom Request Error 1',
+    //     repeatedErrorMsg2: 'Custom Request Error 2'
+    //   }
+    // },
     manage: {
       common: {
         status: {
@@ -380,31 +394,6 @@ const local: App.I18n.Schema = {
           UserLog: 'User log',
           AdminLog: 'Admin log',
           SystemLog: 'System log'
-        }
-      },
-
-      api: {
-        title: 'API List',
-        path: 'Path',
-        method: 'Method',
-        summary: 'Summary',
-        tags: 'Tags',
-        status: 'Status',
-        form: {
-          path: 'Please enter path',
-          method: 'Please select method',
-          summary: 'Please enter summary',
-          tags: 'Please enter tags',
-          status: 'Please select user status'
-        },
-        addApi: 'Add API',
-        editApi: 'Edit API',
-        methods: {
-          GET: 'GET',
-          POST: 'POST',
-          PUT: 'PUT',
-          PATCH: 'PATCH',
-          DELETE: 'DELETE'
         }
       },
       user: {
@@ -506,7 +495,6 @@ const local: App.I18n.Schema = {
     }
   },
 
-  
   form: {
     required: 'Cannot be empty',
     userName: {
